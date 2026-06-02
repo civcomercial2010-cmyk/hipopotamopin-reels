@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generador de Reels — Hipopótamo Pinturas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <div class="logo-icon">🦛</div>
+  <div class="logo-text">
+    <h1>Hipopótamo Reels</h1>
+    <span>Generador de guiones para Instagram</span>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- Panel de filtros -->
+  <div class="filters-panel">
+    <h2>Configura tu Reel</h2>
+
+    <div class="filters-grid">
+      <div class="filter-group">
+        <label for="tema">Temática</label>
+        <select id="tema">
+          <option value="sorpréndeme (elige el tema más efectivo para el canal)">Sorpréndeme</option>
+          <option value="antes y después de una reforma">Antes y después</option>
+          <option value="renovación de baño sin obra">Baño sin obra</option>
+          <option value="suelos: tarima o vinilo para el hogar">Suelos (tarima / vinilo)</option>
+          <option value="puertas interiores y su impacto visual">Puertas interiores</option>
+          <option value="revestimientos de pared decorativos">Revestimientos de pared</option>
+          <option value="ventanas eficientes y ahorro energético">Ventanas eficientes</option>
+          <option value="comparativa de productos o soluciones">Comparativa</option>
+          <option value="error frecuente al reformar el hogar">Error frecuente</option>
+          <option value="inspiración y tendencias en decoración">Inspiración / tendencias</option>
+          <option value="tienda física y exposición de Hipopótamo">Tienda y exposición</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="formato">Formato</label>
+        <select id="formato">
+          <option value="">Cualquiera</option>
+          <option value="formato antes y después con impacto visual">Antes y después</option>
+          <option value="formato error común que comete la gente">Error común</option>
+          <option value="formato comparativa directa entre dos opciones">Comparativa directa</option>
+          <option value="formato caso real de cliente satisfecho">Caso real de cliente</option>
+          <option value="formato transformación rápida paso a paso">Transformación rápida</option>
+          <option value="formato mito vs realidad desmontando creencias">Mito vs realidad</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="objecion">Objeción a resolver</label>
+        <select id="objecion">
+          <option value="">Sin objeción específica</option>
+          <option value="resolviendo la objeción: ¿por qué no comprar barato en grandes superficies?">¿Por qué no comprar barato?</option>
+          <option value="resolviendo la objeción: ¿qué garantía tengo si algo sale mal?">¿Qué garantía tengo?</option>
+          <option value="resolviendo la objeción: ¿es de verdad sin obra ni escombros?">¿Sin obra de verdad?</option>
+          <option value="resolviendo la objeción: ¿cuánto dura y resiste en el día a día?">¿Cuánto dura / resiste?</option>
+          <option value="resolviendo la objeción: ¿por qué ir a tienda local en vez de gran superficie?">¿Tienda vs gran superficie?</option>
+          <option value="resolviendo la objeción: ¿cómo puedo financiarlo sin intereses?">¿Cómo puedo financiarlo?</option>
+          <option value="resolviendo la objeción: ¿es seguro contratar instaladores informales?">¿Instaladores informales?</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="incluir">Incluir en el guion</label>
+        <select id="incluir">
+          <option value="">Estándar</option>
+          <option value="menciona que tienen financiación a 12 y 24 meses sin intereses">Financiación sin intereses</option>
+          <option value="menciona la garantía completa del trabajo instalado">Garantía completa</option>
+          <option value="menciona sus tiendas físicas en Zaragoza donde ver los productos en exposición">Tiendas físicas de Zaragoza</option>
+          <option value="menciona la solución llave en mano: un solo interlocutor para todo">Solución llave en mano</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Ideas rápidas -->
+    <div class="quick-ideas">
+      <div class="quick-ideas-label">Ideas rápidas</div>
+      <div class="quick-buttons">
+        <button class="quick-btn" data-idea="baño sin obra: transformación de viejo a espectacular en solo 2 días">🚿 Baño sin obra</button>
+        <button class="quick-btn" data-idea="tarima vs vinilo: ¿cuál es mejor opción para tu casa?">🪵 Tarima vs vinilo</button>
+        <button class="quick-btn" data-idea="3 errores graves que comete la gente al reformar su casa">⚠️ 3 errores reforma</button>
+        <button class="quick-btn" data-idea="transforma tu salón con palillería decorativa sin obra">🎨 Palillería decorativa</button>
+        <button class="quick-btn" data-idea="por qué cambiar las ventanas puede ahorrarte 400€ al año en calefacción">🪟 Ahorra con ventanas</button>
+        <button class="quick-btn" data-idea="reforma completa del recibidor en un fin de semana">🚪 Recibidor en finde</button>
+      </div>
+    </div>
+
+    <button class="generate-btn" id="generateBtn">
+      <span>✨</span>
+      <span>Generar guion de Reel</span>
+    </button>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading" id="loading">
+    <div class="dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    <p>Creando tu guion personalizado…</p>
+  </div>
+
+  <!-- Error -->
+  <div class="error-box" id="errorBox"></div>
+
+  <!-- Resultado -->
+  <div class="result" id="result">
+
+    <div class="result-header">
+      <div class="result-title">
+        <h3 id="rTitulo"></h3>
+        <span class="badge" id="rObjetivo"></span>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-label">🎯 Gancho (primeros 3 segundos)</div>
+      <p class="gancho-text" id="rGancho"></p>
+    </div>
+
+    <div class="section-card">
+      <div class="section-label">🎬 Guion completo</div>
+      <p class="guion-text" id="rGuion"></p>
+    </div>
+
+    <div class="section-card">
+      <div class="section-label">🎥 Plan de grabación por escenas</div>
+      <ol class="escenas-list" id="rEscenas"></ol>
+    </div>
+
+    <div class="section-card">
+      <div class="section-label">💬 Textos en pantalla</div>
+      <div class="chips" id="rTextosPantalla"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-label">📣 Call to action</div>
+      <p class="cta-text" id="rCta"></p>
+    </div>
+
+    <div class="section-card">
+      <div class="section-label">📱 Copy para Instagram</div>
+      <p class="copy-instagram-text" id="rCopy"></p>
+    </div>
+
+    <div class="section-card">
+      <div class="section-label"># Hashtags</div>
+      <div class="chips" id="rHashtags"></div>
+    </div>
+
+    <div class="result-actions">
+      <button class="btn-secondary" id="regenerateBtn">🔄 Generar otro con los mismos filtros</button>
+      <button class="btn-copy" id="copyBtn">📋 Copiar guion</button>
+    </div>
+
+  </div>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
