@@ -55,7 +55,10 @@ Responde SOLO con un objeto JSON válido, sin texto fuera del JSON, sin backtick
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "llama-3.3-70b-versatile",
+        // Groq retiró llama-3.3-70b-versatile el 16/08/2026 y desde entonces
+        // devuelve 404 model_not_found. Este es uno de los dos sustitutos que
+        // recomienda su documentación de deprecaciones.
+        model: "openai/gpt-oss-120b",
         max_tokens: 2048,
         temperature: 0.8,
         messages: [
