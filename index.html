@@ -20,7 +20,7 @@
 
   <!-- Panel de filtros -->
   <div class="filters-panel">
-    <h2>Configura tu Reel</h2>
+    <h2>Configura tus Reels</h2>
 
     <div class="filters-grid">
       <div class="filter-group">
@@ -94,7 +94,7 @@
 
     <button class="generate-btn" id="generateBtn">
       <span>✨</span>
-      <span>Generar guion de Reel</span>
+      <span>Generar 3 guiones</span>
     </button>
   </div>
 
@@ -105,63 +105,21 @@
       <div class="dot"></div>
       <div class="dot"></div>
     </div>
-    <p>Creando tu guion personalizado…</p>
+    <p>Generando 3 guiones personalizados…</p>
   </div>
 
   <!-- Error -->
   <div class="error-box" id="errorBox"></div>
 
-  <!-- Resultado -->
-  <div class="result" id="result">
-
-    <div class="result-header">
-      <div class="result-title">
-        <h3 id="rTitulo"></h3>
-        <span class="badge" id="rObjetivo"></span>
-      </div>
-    </div>
-
-    <div class="section-card">
-      <div class="section-label">🎯 Gancho (primeros 3 segundos)</div>
-      <p class="gancho-text" id="rGancho"></p>
-    </div>
-
-    <div class="section-card">
-      <div class="section-label">🎬 Guion completo</div>
-      <p class="guion-text" id="rGuion"></p>
-    </div>
-
-    <div class="section-card">
-      <div class="section-label">🎥 Plan de grabación por escenas</div>
-      <ol class="escenas-list" id="rEscenas"></ol>
-    </div>
-
-    <div class="section-card">
-      <div class="section-label">💬 Textos en pantalla</div>
-      <div class="chips" id="rTextosPantalla"></div>
-    </div>
-
-    <div class="section-card">
-      <div class="section-label">📣 Call to action</div>
-      <p class="cta-text" id="rCta"></p>
-    </div>
-
-    <div class="section-card">
-      <div class="section-label">📱 Copy para Instagram</div>
-      <p class="copy-instagram-text" id="rCopy"></p>
-    </div>
-
-    <div class="section-card">
-      <div class="section-label"># Hashtags</div>
-      <div class="chips" id="rHashtags"></div>
-    </div>
-
-    <div class="result-actions">
-      <button class="btn-secondary" id="regenerateBtn">🔄 Generar otro con los mismos filtros</button>
-      <button class="btn-copy" id="copyBtn">📋 Copiar guion</button>
-    </div>
-
+  <!-- Acciones globales (aparecen sobre los resultados) -->
+  <div class="results-actions" id="resultsActions">
+    <button class="btn-secondary" id="regenerateBtn">✨ Generar 3 más</button>
+    <button class="btn-word" id="wordBtn">📄 Descargar Word</button>
+    <button class="btn-clear" id="clearBtn">🗑 Limpiar todo</button>
   </div>
+
+  <!-- Contenedor dinámico de resultados -->
+  <div id="resultsContainer"></div>
 
 </main>
 

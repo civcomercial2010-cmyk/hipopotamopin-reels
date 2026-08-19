@@ -48,18 +48,20 @@ Responde SOLO con un objeto JSON válido, sin texto fuera del JSON, sin backtick
 }`;
 
   try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
+    const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
-        "x-api-key": process.env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
-        "content-type": "application/json",
+        "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
+        model: "llama-3.3-70b-versatile",
         max_tokens: 2048,
-        system: systemPrompt,
-        messages: [{ role: "user", content: userPrompt }],
+        temperature: 0.8,
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: userPrompt },
+        ],
       }),
     });
 
@@ -73,7 +75,10 @@ Responde SOLO con un objeto JSON válido, sin texto fuera del JSON, sin backtick
     }
 
     const data = await response.json();
-    return { statusCode: 200, headers, body: JSON.stringify(data) };
+    const text = data.choices?.[0]?.message?.content;
+    if (!text) throw new Error("Respuesta vacía de Groq");
+
+    return { statusCode: 200, headers, body: JSON.stringify({ content: [{ text }] }) };
   } catch (err) {
     return {
       statusCode: 500,
