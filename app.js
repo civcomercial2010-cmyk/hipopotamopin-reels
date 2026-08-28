@@ -94,8 +94,15 @@ function handleCardAction(e, type) {
 
 // ─── Construcción de prompts ──────────────────────
 function resolveTema(quickIdea) {
+  if (quickIdea) return quickIdea;
+
   const temaCustom = document.getElementById("temaCustom").value.trim();
-  return quickIdea || temaCustom || document.getElementById("tema").value;
+  const temaSelect = document.getElementById("tema").value;
+
+  if (temaSelect && temaCustom) {
+    return `${temaSelect}. Incorpora también este matiz o detalle: ${temaCustom}`;
+  }
+  return temaCustom || temaSelect || "sorpréndeme (elige el tema más efectivo para el canal)";
 }
 
 function buildPrompt(quickIdea = null) {
