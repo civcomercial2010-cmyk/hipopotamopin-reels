@@ -20,7 +20,12 @@
 
   <!-- Panel de filtros -->
   <div class="filters-panel">
-    <h2>Configura tus Reels</h2>
+    <h2 id="filtersTitle">Configura tus Reels</h2>
+
+    <label class="mode-toggle" for="radioModeCheckbox">
+      <input type="checkbox" id="radioModeCheckbox">
+      <span>🎙️ Generar cuñas de radio (15 seg.) en vez de reels</span>
+    </label>
 
     <div class="filters-grid">
       <div class="filter-group">
@@ -40,7 +45,7 @@
         </select>
       </div>
 
-      <div class="filter-group">
+      <div class="filter-group" id="formatoGroup">
         <label for="formato">Formato</label>
         <select id="formato">
           <option value="">Cualquiera</option>
@@ -67,7 +72,7 @@
         </select>
       </div>
 
-      <div class="filter-group">
+      <div class="filter-group" id="incluirGroup">
         <label for="incluir">Incluir en el guion</label>
         <select id="incluir">
           <option value="">Estándar</option>
@@ -93,8 +98,8 @@
     </div>
 
     <button class="generate-btn" id="generateBtn">
-      <span>✨</span>
-      <span>Generar 3 guiones</span>
+      <span id="generateBtnIcon">✨</span>
+      <span id="generateBtnLabel">Generar 3 guiones</span>
     </button>
   </div>
 
@@ -105,21 +110,29 @@
       <div class="dot"></div>
       <div class="dot"></div>
     </div>
-    <p>Generando 3 guiones personalizados…</p>
+    <p id="loadingText">Generando 3 guiones personalizados…</p>
   </div>
 
   <!-- Error -->
   <div class="error-box" id="errorBox"></div>
 
-  <!-- Acciones globales (aparecen sobre los resultados) -->
+  <!-- Resultados: Reels -->
+  <h2 class="results-heading" id="reelResultsHeading">🎬 Reels generados</h2>
   <div class="results-actions" id="resultsActions">
     <button class="btn-secondary" id="regenerateBtn">✨ Generar 3 más</button>
     <button class="btn-word" id="wordBtn">📄 Descargar Word</button>
     <button class="btn-clear" id="clearBtn">🗑 Limpiar todo</button>
   </div>
-
-  <!-- Contenedor dinámico de resultados -->
   <div id="resultsContainer"></div>
+
+  <!-- Resultados: Cuñas de radio -->
+  <h2 class="results-heading" id="radioResultsHeading">🎙️ Cuñas de radio generadas</h2>
+  <div class="results-actions" id="resultsActionsRadio">
+    <button class="btn-secondary" id="regenerateRadioBtn">🎙️ Generar 3 cuñas más</button>
+    <button class="btn-word" id="wordRadioBtn">📄 Descargar Word</button>
+    <button class="btn-clear" id="clearRadioBtn">🗑 Limpiar todo</button>
+  </div>
+  <div id="resultsContainerRadio"></div>
 
 </main>
 

@@ -14,9 +14,9 @@ exports.handler = async function (event) {
     return { statusCode: 405, headers, body: JSON.stringify({ error: "Método no permitido" }) };
   }
 
-  let userPrompt;
+  let userPrompt, tipo;
   try {
-    ({ userPrompt } = JSON.parse(event.body));
+    ({ userPrompt, tipo } = JSON.parse(event.body));
   } catch {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Body inválido" }) };
   }
@@ -25,11 +25,13 @@ exports.handler = async function (event) {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "userPrompt requerido" }) };
   }
 
-  const systemPrompt = `Eres el Director Creativo Senior de Hipopótamo Pinturas y Decoración, empresa de Zaragoza especializada en soluciones integrales para el hogar (suelos, puertas, revestimientos, baños sin obra, ventanas, pintura).
+  const EMPRESA = `EMPRESA: Hipopótamo Pinturas y Decoración, Zaragoza. Tiendas físicas. Instalación profesional. Garantía completa. Financiación 12 y 24 meses sin intereses. Solución llave en mano. Un único interlocutor.
 
-EMPRESA: Hipopótamo Pinturas y Decoración, Zaragoza. Tiendas físicas. Instalación profesional. Garantía completa. Financiación 12 y 24 meses sin intereses. Solución llave en mano. Un único interlocutor.
+PÚBLICO: Propietarios de vivienda, mayores de 45 años, familias.`;
 
-PÚBLICO: Propietarios de vivienda, mayores de 45 años, familias.
+  const systemPromptReel = `Eres el Director Creativo Senior de Hipopótamo Pinturas y Decoración, empresa de Zaragoza especializada en soluciones integrales para el hogar (suelos, puertas, revestimientos, baños sin obra, ventanas, pintura).
+
+${EMPRESA}
 
 Tu tarea: generar un guion completo para un Instagram Reel de 20-45 segundos, fácil de grabar con móvil, lenguaje sencillo, muy visual.
 
@@ -39,13 +41,33 @@ Responde SOLO con un objeto JSON válido, sin texto fuera del JSON, sin backtick
   "titulo": "Título atractivo del reel",
   "objetivo": "Qué consigue este reel en una frase",
   "gancho": "Texto del gancho para los primeros 3 segundos",
-  "guion": "Guion completo palabra por palabra para grabar. Usa \\n para saltos de línea entre escenas.",
+  "guion": "SOLO el texto que se dice en voz alta, palabra por palabra, tal cual se lee al grabar. No incluyas acotaciones de cámara, planos, ni descripciones de escena o acción: eso va aparte en 'escenas'. Usa \\n para separar frases o pausas naturales del habla.",
   "escenas": ["Descripción escena 1 con plano y acción", "Escena 2...", "Escena 3..."],
   "textos_pantalla": ["Texto 1 que aparece en pantalla", "Texto 2...", "Texto 3..."],
   "cta": "Call to action final orientado a visita a tienda o presupuesto",
   "copy_instagram": "Copy completo para el pie de foto de Instagram con emojis naturales",
   "hashtags": ["#hashtag1", "#hashtag2", "#hashtag3", "#hashtag4", "#hashtag5"]
 }`;
+
+  const systemPromptRadio = `Eres el Director Creativo Senior de Hipopótamo Pinturas y Decoración, empresa de Zaragoza especializada en soluciones integrales para el hogar (suelos, puertas, revestimientos, baños sin obra, ventanas, pintura).
+
+${EMPRESA}
+
+Tu tarea: generar el guion de una cuña de radio de exactamente 15 segundos (unas 35-40 palabras leídas a ritmo normal de locución), pensada para un locutor profesional. No hay ningún elemento visual: todo el impacto depende de la voz, el tono y el sonido.
+
+Responde SOLO con un objeto JSON válido, sin texto fuera del JSON, sin backticks, sin markdown. Estructura exacta:
+
+{
+  "titulo": "Título identificativo de la cuña",
+  "objetivo": "Qué consigue esta cuña en una frase",
+  "gancho": "Primeras palabras que captan la atención en los primeros 3 segundos",
+  "guion": "Guion completo palabra por palabra para el locutor, pensado para durar 15 segundos en voz alta. Incluye acotaciones de tono, énfasis y pausas entre corchetes justo antes de la frase a la que afectan, por ejemplo: [Tono cercano y cálido] Frase de gancho... [pausa breve] ...frase siguiente. [Tono seguro y directo] Frase del CTA. Usa \\n entre bloques de locución.",
+  "musica_ambiente": "Sugerencia breve de música de fondo o efectos de sonido para la producción de la cuña",
+  "cta": "Call to action final, claro y memorable, orientado a visita a tienda o presupuesto",
+  "duracion_estimada": "Duración estimada en segundos del guion leído en voz alta, debe rondar 15"
+}`;
+
+  const systemPrompt = tipo === "radio" ? systemPromptRadio : systemPromptReel;
 
   try {
     const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
