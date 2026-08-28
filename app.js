@@ -93,27 +93,36 @@ function handleCardAction(e, type) {
 }
 
 // ─── Construcción de prompts ──────────────────────
+function resolveTema(quickIdea) {
+  const temaCustom = document.getElementById("temaCustom").value.trim();
+  return quickIdea || temaCustom || document.getElementById("tema").value;
+}
+
 function buildPrompt(quickIdea = null) {
-  const tema     = quickIdea || document.getElementById("tema").value;
+  const tema     = resolveTema(quickIdea);
   const formato  = document.getElementById("formato").value;
   const objecion = document.getElementById("objecion").value;
   const incluir  = document.getElementById("incluir").value;
+  const urgencia = document.getElementById("urgencia").value;
 
   let prompt = `Genera un guion completo de Reel para Hipopótamo sobre: ${tema}.`;
   if (formato)  prompt += `\nFormato del vídeo: ${formato}.`;
   if (objecion) prompt += `\nObjeción principal a abordar: ${objecion}.`;
   if (incluir)  prompt += `\nÉnfasis adicional: ${incluir}.`;
+  if (urgencia) prompt += `\nContexto de urgencia/temporada: ${urgencia}.`;
   prompt += `\nTermina el CTA con: "Hipopótamo, 8 centros muy cerca de ti." cuando encaje naturalmente.`;
   prompt += `\nIMPORTANTE: este guion debe tener un gancho, estructura y enfoque completamente diferente a cualquier otro.`;
   return prompt;
 }
 
 function buildRadioPrompt(quickIdea = null) {
-  const tema     = quickIdea || document.getElementById("tema").value;
+  const tema     = resolveTema(quickIdea);
   const objecion = document.getElementById("objecion").value;
+  const urgencia = document.getElementById("urgencia").value;
 
   let prompt = `Genera el guion de una cuña de radio de 15 segundos para Hipopótamo sobre: ${tema}.`;
   if (objecion) prompt += `\nObjeción principal a abordar: ${objecion}.`;
+  if (urgencia) prompt += `\nContexto de urgencia/temporada: ${urgencia}.`;
   prompt += `\nTermina el CTA con: "Hipopótamo, 8 centros muy cerca de ti." cuando encaje naturalmente.`;
   prompt += `\nIMPORTANTE: esta cuña debe tener un gancho, estructura y enfoque completamente diferente a cualquier otra.`;
   return prompt;

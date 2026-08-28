@@ -100,6 +100,24 @@ header {
 }
 
 .filter-group.hidden { display: none; }
+.filter-group--wide { grid-column: 1 / -1; }
+
+.filter-group input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+  color: var(--text);
+}
+
+.filter-group input[type="text"]:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.12);
+}
 
 .filters-grid {
   display: grid;

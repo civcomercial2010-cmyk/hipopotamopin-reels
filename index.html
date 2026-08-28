@@ -31,17 +31,37 @@
       <div class="filter-group">
         <label for="tema">Temática</label>
         <select id="tema">
-          <option value="sorpréndeme (elige el tema más efectivo para el canal)">Sorpréndeme</option>
-          <option value="antes y después de una reforma">Antes y después</option>
-          <option value="renovación de baño sin obra">Baño sin obra</option>
-          <option value="suelos: tarima o vinilo para el hogar">Suelos (tarima / vinilo)</option>
-          <option value="puertas interiores y su impacto visual">Puertas interiores</option>
-          <option value="revestimientos de pared decorativos">Revestimientos de pared</option>
-          <option value="ventanas eficientes y ahorro energético">Ventanas eficientes</option>
-          <option value="comparativa de productos o soluciones">Comparativa</option>
-          <option value="error frecuente al reformar el hogar">Error frecuente</option>
-          <option value="inspiración y tendencias en decoración">Inspiración / tendencias</option>
-          <option value="tienda física y exposición de Hipopótamo">Tienda y exposición</option>
+          <optgroup label="Productos y reformas">
+            <option value="renovación de baño sin obra">Baño sin obra</option>
+            <option value="suelos: tarima o vinilo para el hogar">Suelos (tarima / vinilo)</option>
+            <option value="puertas interiores y su impacto visual">Puertas interiores</option>
+            <option value="revestimientos de pared decorativos para el salón u otras estancias">Revestimientos de pared (salón)</option>
+            <option value="revestimiento de paredes de baño: azulejo o panel decorativo sin obra">Revestimiento pared de baño</option>
+            <option value="revestimiento de paredes de cocina: azulejo o panel decorativo sin obra">Revestimiento pared de cocina</option>
+            <option value="palillería decorativa para transformar paredes sin obra">Palillería decorativa</option>
+            <option value="ventanas eficientes y ahorro energético">Ventanas eficientes</option>
+            <option value="pintura de interiores: renovar el color y acabado del hogar">Pintura de interiores</option>
+          </optgroup>
+          <optgroup label="Ángulos de contenido">
+            <option value="sorpréndeme (elige el tema más efectivo para el canal)">Sorpréndeme</option>
+            <option value="inspiración y tendencias en decoración">Inspiración / tendencias</option>
+            <option value="tienda física y exposición de Hipopótamo">Tienda y exposición</option>
+          </optgroup>
+          <optgroup label="Campañas y promociones">
+            <option value="promoción sin IVA en la reforma: destaca el ahorro y la urgencia de la oferta">Sin IVA</option>
+            <option value="campaña de Black Friday: ofertas especiales por tiempo limitado en reformas del hogar">Black Friday</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="urgencia">Urgencia / temporada</label>
+        <select id="urgencia">
+          <option value="">Sin urgencia específica</option>
+          <option value="con la urgencia de tenerlo listo antes de Navidad">Antes de Navidad</option>
+          <option value="aprovechando el cambio de estación para renovar el hogar">Cambio de estación</option>
+          <option value="transmitiendo urgencia: últimas plazas de instalación disponibles este mes">Últimas plazas del mes</option>
+          <option value="cerrando el año: última oportunidad para reformar antes de que acabe">Fin de año</option>
         </select>
       </div>
 
@@ -84,6 +104,11 @@
       </div>
     </div>
 
+    <div class="filter-group filter-group--wide">
+      <label for="temaCustom">Tema personalizado (opcional)</label>
+      <input type="text" id="temaCustom" placeholder='Escribe tu propio tema y sustituirá a la Temática de arriba, p. ej. "reforma integral de cocina en 10 días"'>
+    </div>
+
     <!-- Ideas rápidas -->
     <div class="quick-ideas">
       <div class="quick-ideas-label">Ideas rápidas</div>
@@ -94,6 +119,11 @@
         <button class="quick-btn" data-idea="transforma tu salón con palillería decorativa sin obra">🎨 Palillería decorativa</button>
         <button class="quick-btn" data-idea="por qué cambiar las ventanas puede ahorrarte 400€ al año en calefacción">🪟 Ahorra con ventanas</button>
         <button class="quick-btn" data-idea="reforma completa del recibidor en un fin de semana">🚪 Recibidor en finde</button>
+        <button class="quick-btn" data-idea="revestimiento de paredes de baño sin picar el azulejo viejo">🧱 Azulejo baño sin obra</button>
+        <button class="quick-btn" data-idea="revestimiento de paredes de cocina sin obra ni escombros">🍳 Revestir cocina sin obra</button>
+        <button class="quick-btn" data-idea="renueva el color de tu hogar con pintura de interiores profesional">🖌️ Pinta tu casa</button>
+        <button class="quick-btn" data-idea="promoción especial: reforma tu hogar sin pagar IVA por tiempo limitado">💸 Reforma Sin IVA</button>
+        <button class="quick-btn" data-idea="ofertas de Black Friday en reformas del hogar: suelos, baños, puertas y ventanas">🛍️ Black Friday reformas</button>
       </div>
     </div>
 
